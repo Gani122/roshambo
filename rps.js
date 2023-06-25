@@ -1,3 +1,6 @@
+let playerScore = 0;
+let cpuScore = 0;
+
 function getComputerChoice() {
     let choice = "";
     let randomNum = Math.floor(Math.random() * 3);
@@ -21,19 +24,19 @@ function shoot(playerSelection, computerSelection) {
         round = "Tie!"
     }
     else if (playerSelection === 'ROCK' && computerSelection === "PAPER") {
-        round = "You Lose! Paper beats Rock"
+        round = "You Lose! Rock loses to Paper"
     }
     else if (playerSelection === 'ROCK' && computerSelection === "SCISSORS") {
         round = "You Win! Rock beats Scissors"
     }
     else if (playerSelection === 'PAPER' && computerSelection === "SCISSORS") {
-        round = "You Lose! Scissors beats Paper"
+        round = "You Lose! Paper loses to Scissors"
     }
     else if (playerSelection === 'PAPER' && computerSelection === "ROCK") {
         round = "You Win! Paper beats Rock"
     }
     else if (playerSelection === 'SCISSORS' && computerSelection === "ROCK") {
-        round = "You Lose! Rock beats Scissors"
+        round = "You Lose! Scissors loses to Rock"
     }
     else if (playerSelection === 'SCISSORS' && computerSelection === "PAPER") {
         round = "You Win! Scissors beats Paper"
@@ -42,11 +45,33 @@ function shoot(playerSelection, computerSelection) {
     return round;
 }
 
-const playerSelection = prompt("Make a choice: ");
-const computerSelection = getComputerChoice();
-console.log (shoot(playerSelection.toUpperCase(), computerSelection));
-console.log(playerSelection, computerSelection);
-
 function game() {
+    
+    while(playerScore !== 5 && cpuScore !== 5) {
+        const playerSelection = prompt("Rock, Paper or Scissors: ");
+        const computerSelection = getComputerChoice();
+        
+        let score = shoot(playerSelection.toUpperCase(), computerSelection);
 
+        if(score.indexOf("You Win") === 0){
+            playerScore++;
+        }
+        else if(score.indexOf("You Lose") === 0){
+            cpuScore++
+        }
+
+        console.log(score);
+        if (score.indexOf("Tie")=== -1){
+            console.log("Score: " + playerScore + " - " + cpuScore);
+        }
+    }
+}
+
+game();
+
+if (playerScore > cpuScore){
+    console.log("You beat the Computer! Good job")
+}
+else{
+    console.log("You lost to the Computer. Better luck next time");
 }
