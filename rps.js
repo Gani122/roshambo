@@ -38,11 +38,11 @@ function shoot(playerSelection, computerSelection) {
     else if (playerSelection === 'SCISSORS' && computerSelection === "PAPER") {
         round = "You Win! Scissors beats Paper"
     }
-    
+
     return round;
 }
 
-const playerSelection = "rock";
+const playerSelection = prompt("Make a choice: ");
 const computerSelection = getComputerChoice();
 console.log (shoot(playerSelection.toUpperCase(), computerSelection));
 console.log(playerSelection, computerSelection);
