@@ -48,10 +48,10 @@ function shoot(playerSelection, computerSelection) {
 function game() {
     
     while(playerScore !== 5 && cpuScore !== 5) {
-        const playerSelection = prompt("Rock, Paper or Scissors: ");
+        const playerSelection = prompt("Rock, Paper or Scissors: ").toUpperCase();
         const computerSelection = getComputerChoice();
         
-        let score = shoot(playerSelection.toUpperCase(), computerSelection);
+        let score = shoot(playerSelection, computerSelection);
 
         if(score.indexOf("You Win") === 0){
             playerScore++;
