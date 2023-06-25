@@ -48,21 +48,24 @@ function shoot(playerSelection, computerSelection) {
 function game() {
     
     while(playerScore !== 5 && cpuScore !== 5) {
-        const playerSelection = prompt("Rock, Paper or Scissors: ").toUpperCase();
+        const playerSelection = prompt("Rock, Paper or Scissors: ");
         const computerSelection = getComputerChoice();
         
-        let score = shoot(playerSelection, computerSelection);
+        if(playerSelection !== null){
+            
+            let score = shoot(playerSelection.toUpperCase(), computerSelection);
 
-        if(score.indexOf("You Win") === 0){
-            playerScore++;
-        }
-        else if(score.indexOf("You Lose") === 0){
-            cpuScore++
-        }
+            if(score.indexOf("You Win") === 0){
+                playerScore++;
+            }
+            else if(score.indexOf("You Lose") === 0){
+                cpuScore++
+            }
 
-        console.log(score);
-        if (score.indexOf("Tie")=== -1){
-            console.log("Score: " + playerScore + " - " + cpuScore);
+            console.log(score);
+            if (score.indexOf("Tie")=== -1){
+                console.log("Score: " + playerScore + " - " + cpuScore);
+            }
         }
     }
 }
