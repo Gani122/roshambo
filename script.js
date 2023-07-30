@@ -45,10 +45,10 @@ function shoot(playerSelection, computerSelection) {
     return round;
 }
 
-function game() {
+function game(btn) {
     
-    while(playerScore !== 5 && cpuScore !== 5) {
-        const playerSelection = prompt("Rock, Paper or Scissors: ");
+    //while(playerScore !== 5 && cpuScore !== 5) {
+        const playerSelection = btn;
         const computerSelection = getComputerChoice();
         
         if(playerSelection !== null){
@@ -67,14 +67,20 @@ function game() {
                 console.log("Score: " + playerScore + " - " + cpuScore);
             }
         }
-    }
+    //}
 }
 
-game();
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        game(button.id);
+    });
+});
 
 if (playerScore > cpuScore){
     console.log("You beat the Computer! Good job")
 }
-else{
+else if(cpuScore > playerScore){
     console.log("You lost to the Computer. Better luck next time");
 }
