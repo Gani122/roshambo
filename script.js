@@ -1,6 +1,11 @@
 let playerScore = 0;
 let cpuScore = 0;
 
+const scoreDisplay = document.querySelector('#score');
+const scoreMsg = document.querySelector('#msg');
+const results = document.querySelector('#results');
+
+
 function getComputerChoice() {
     let choice = "";
     let randomNum = Math.floor(Math.random() * 3);
@@ -47,7 +52,7 @@ function shoot(playerSelection, computerSelection) {
 
 function game(btn) {
     
-    //while(playerScore !== 5 && cpuScore !== 5) {
+    if(playerScore !== 5 && cpuScore !== 5) {
         const playerSelection = btn;
         const computerSelection = getComputerChoice();
         
@@ -62,12 +67,23 @@ function game(btn) {
                 cpuScore++
             }
 
-            console.log(score);
+            scoreMsg.textContent = score;
             if (score.indexOf("Tie")=== -1){
-                console.log("Score: " + playerScore + " - " + cpuScore);
+                scoreDisplay.textContent = "Score: " + playerScore + " - " + cpuScore;
             }
         }
-    //}
+    }
+    else {
+        document.getElementById('rock').setAttribute("disabled", "disabled");
+        document.getElementById('paper').setAttribute("disabled", "disabled");
+        document.getElementById('scissors').setAttribute("disabled", "disabled");
+        if (playerScore > cpuScore){
+            results.textContent = "You beat the Computer! Good job";
+        }
+        else if(cpuScore > playerScore){
+            results.textContent = "You lost to the Computer. Better luck next time";
+        }
+    }
 }
 
 const buttons = document.querySelectorAll('button');
@@ -77,10 +93,3 @@ buttons.forEach((button) => {
         game(button.id);
     });
 });
-
-if (playerScore > cpuScore){
-    console.log("You beat the Computer! Good job")
-}
-else if(cpuScore > playerScore){
-    console.log("You lost to the Computer. Better luck next time");
-}
